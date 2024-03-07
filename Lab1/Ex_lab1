@@ -1,0 +1,45 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Data för Pichus (width (cm), height (cm))
+pichu_data = np.array([
+    [20.11541438766307, 28.701809671168824],
+    [15.200086041781336, 27.095070307714877],
+    [17.200234546952956, 27.669778220491132],
+    # Här lägger du till dina egna Pichu-data på samma sätt
+])
+
+# Data för Pikachus (width (cm), height (cm))
+pikachu_data = np.array([
+    [18.137772263313835, 44.951493566608946],
+    [26.648661832322336, 41.49878057639454],
+    [26.180524428318897, 39.38100083914504],
+    # Här lägger du till dina egna Pikachu-data på samma sätt
+])
+
+# Plotta alla punkterna med olika färger i samma fönster
+plt.scatter(pichu_data[:, 0], pichu_data[:, 1], color='blue', label='Pichu')
+plt.scatter(pikachu_data[:, 0], pikachu_data[:, 1], color='red', label='Pikachu')
+plt.xlabel('Width (cm)')
+plt.ylabel('Height (cm)')
+plt.title('Pichu vs Pikachu')
+plt.legend()
+plt.show()
+
+# Läs in testpunkter (byt ut dessa med dina egna testpunkter)
+test_points = np.array([[25, 35], [15, 14], [26, 30], [22, 45]])
+
+# Beräkna avståndet mellan testpunkten och övriga punkter
+for test_point in test_points:
+    pichu_distances = np.sqrt(np.sum((test_point - pichu_data) ** 2, axis=1))
+    pikachu_distances = np.sqrt(np.sum((test_point - pikachu_data) ** 2, axis=1))
+
+    # Närmaste punkten visar om det är Pichu eller Pikachu
+    nearest_pichu_distance = np.min(pichu_distances)
+    nearest_pikachu_distance = np.min(pikachu_distances)
+
+    # Klassificera testpunkten som Pichu eller Pikachu
+    if nearest_pichu_distance < nearest_pikachu_distance:
+        print("Testpunkten ({}, {}) klassificeras som Pichu.".format(test_point[0], test_point[1]))
+    else:
+        print("Testpunkten ({}, {}) klassificeras som Pikachu.".format(test_point[0], test_point[1]))

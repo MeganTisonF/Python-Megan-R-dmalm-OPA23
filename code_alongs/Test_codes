@@ -1,0 +1,7 @@
+birds = 80000
+year = 0
+while birds > 80000:
+    birds /= 2 #birds = birdss / 2
+    year += 1 # year = years + 1
+
+    print(year)
